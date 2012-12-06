@@ -1,0 +1,29 @@
+{
+  "name": "hap",
+  "version": "0.0.0",
+  "description": "An extension to the Node.js events.EventEmitter.",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/johngeorgewright/hap.git"
+  },
+  "keywords": [
+    "events",
+    "emitter",
+    "EventEmitter"
+  ],
+  "author": "John Wright <johngeorge.wright@gmail.com>",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "mocha": "1.7.3",
+    "sinon": "1.5.2",
+    "expect.js": "0.2.0"
+  }
+}
