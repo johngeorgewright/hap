@@ -189,112 +189,123 @@ module.exports = function(){
 API
 ---
 
-### #addChild(emitter)
+### EventEmitter
+
+#### #addChild(emitter)
 
 Adds an emitter as a child to this object.
 
-#### Parameters
+##### Parameters
 
 - emitter {hap.EventEmitter} The child emitter
 
 
-### #after(eventName, fn)
+#### #after(eventName, fn)
 
 Adds a listener to the final bubling stage.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to attach to
 - fn {Function} Callback function
 
 
-### #before(eventName, fn)
+#### #before(eventName, fn)
 
 Adds a listener to the capturing stage.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to attach to
 - fn {Function} Callback function
 
 
-### #bubble(eventName e)
+#### #bubble(eventName e)
 
 A protected method used to trigger the bubbling sequence.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to bubble
 - e {hap.EventFacade} The event facade
 
 
-### #capture(eventName e)
+#### #capture(eventName e)
 
 A protected method use to trigger the capturing sequence.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to start capturing
 - e {hap.EventFacade} The event facade
 
 
-### #emit(eventName, attrs)
+#### #emit(eventName, attrs)
 
 - see events.EventEmitter
 
 
-### #fire(eventName, attrs)
+#### #fire(eventName, attrs)
 
 Similar to the `#emit()` method but dispatches the capturing/bubbling sequence passing a facade object
 and return a modified value.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to emit
 - attrs {Object | EventFacade} A hash of attributes or an event facade
 
 
-### #on(eventName, fn)
+#### #on(eventName, fn)
 
 - see events.EventEmitter
 
 
-### #once(eventName, fn)
+#### #once(eventName, fn)
 
 - see events.EventEmitter
 
 
-### #onceAfter(eventName, fn)
+#### #onceAfter(eventName, fn)
 
 Similar to `#once()` but attaches the listener to the final bubbling sequence.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to emit
 - fn {Function} The listener callback
 
 
-### #onceBefore(eventName, fn)
+#### #onceBefore(eventName, fn)
 
 Similary to `#once()` but attached the capturing phase.
 
-#### Parameters
+##### Parameters
 
 - eventName {String} The event to emit
 - fn {Function} The listener callback
 
 
-### #removeListener(eventName, fn)
+#### #removeListener(eventName, fn)
 
 - see events.EventEmitter
 
 
-### #setParent(emitter)
+#### #setParent(emitter)
 
 Adds an emitter as a parent to this object.
 
-#### Parameters
+##### Parameters
 
 - emitter {hap.EventEmitter} The parent emitter
 
+### EventFacade
+
+#### #val([value])
+
+Sets or gets the current value. This value might be modified by any listener.
+
+##### Parameters
+
+- value {Mixed} A value to set.
 
