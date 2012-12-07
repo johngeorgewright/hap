@@ -116,6 +116,76 @@ Here's a quote from [quirksmode](http://www.quirksmode.org/js/events_order.html)
 
 hap uses the "W3C model". First there is a capturing phase of which you can attach to with the `#before()` method. There the bubbling takes place of which you can listen to with the `#on()` method. And finally, to add some extra power, the event will bubble from bottom to top one more time of which you can listen to with the `#after()` method.
 
+An real life example
+--------------------
+
+Here's a an example using an Express.js like framework:
+
+```js
+// app.js
+
+var express = require('express'),
+    hap     = require('hap'),
+    http    = require('http'),
+    util    = require('util'),
+    app     = express(),
+    nav     = require('./nav');
+
+util._extend(app, hap.EventEmitter.prototype);
+
+app.use(nav());
+
+app.on('nav', function(e){
+  e.val().push({
+    content : 'Item 1',
+    id      : 'nav-item-1'
+  });
+});
+
+app.get('/', function(req, res){
+  res.send(emitter.fire('nav'));
+  // => <nav><ul><li id="nav-item-1">Item 1</li></ul></nav>
+});
+
+http.createServer(app).listen(8080);
+```
+
+```js
+// nav.js
+
+var express = require('express'),
+    hap     = require('hap'),
+    Html    = require('tag').Html,
+    util    = require('util');
+
+module.exports = function(){
+  var app = express();
+
+  util._extend(app, hap.EventEmitter.prototype);
+
+  app.before('nav', function(e){
+    e.val([]);
+  });
+
+  app.after('nav', function(e){
+    var ul  = Html.factory('ul'),
+        nav = Html.factory('nav');
+
+    e.val().forEach(function(item){
+      var content = item.content,
+          li;
+
+      delete item.content;
+      li = Html.factory('li', item, content);
+      ul.appendChild(li);
+    });
+      
+    nav.appendChild(ul);
+    e.val(nav.toHTML());
+  });
+};
+```
+
 API
 ---
 
