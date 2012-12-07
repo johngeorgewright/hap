@@ -12,6 +12,41 @@ describe('EventEmitter', function(){
     this.testObj = new EventEmitter();
   });
 
+  describe('#addChild()', function(){
+
+    beforeEach(function(){
+      this.child = sinon.stub(new EventEmitter());
+      this.testObj.addChild(this.child);
+    });
+
+    it('should add to the #children property', function(){
+      expect(this.testObj.children).to.be.an(Array);
+      expect(this.testObj.children).to.contain(this.child);
+    });
+
+    it('should call the child\'s #setParent() method', function(){
+      assert(this.child.setParent.calledWith(this.testObj));
+    });
+
+  });
+
+  describe('#setParent()', function(){
+
+    beforeEach(function(){
+      this.parent = sinon.stub(new EventEmitter());
+      this.testObj.setParent(this.parent);
+    });
+
+    it('should change/set the #parent property', function(){
+      expect(this.testObj.parent).to.be(this.parent);
+    });
+
+    it('should call the parent\'s #addChild() method', function(){
+      assert(this.testObj.parent.addChild.calledWith(this.testObj));
+    });
+
+  });
+
   describe('#on()', function(){
 
     beforeEach(function(){
