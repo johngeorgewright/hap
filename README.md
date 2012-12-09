@@ -48,7 +48,7 @@ emitter        = new MyTestEmitter();
 
 emitter.setParent(parentEmitter);
 
-emitter.on('test event', function(e){
+parentEmitter.on('test event', function(e){
   console.log('Parent');
 });
 
