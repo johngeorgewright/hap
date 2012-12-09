@@ -15,7 +15,7 @@ describe('EventEmitter', function(){
   describe('#addChild()', function(){
 
     beforeEach(function(){
-      this.child = sinon.stub(new EventEmitter());
+      this.child = new EventEmitter();
       this.testObj.addChild(this.child);
     });
 
@@ -33,7 +33,7 @@ describe('EventEmitter', function(){
   describe('#setParent()', function(){
 
     beforeEach(function(){
-      this.parent = sinon.stub(new EventEmitter());
+      this.parent = new EventEmitter();
       this.testObj.setParent(this.parent);
     });
 
