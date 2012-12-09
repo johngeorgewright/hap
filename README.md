@@ -116,7 +116,7 @@ Here's a quote from [quirksmode](http://www.quirksmode.org/js/events_order.html)
 
 hap uses the "W3C model". First there is a capturing phase of which you can attach to with the `#before()` method. There the bubbling takes place of which you can listen to with the `#on()` method. And finally, to add some extra power, the event will bubble from bottom to top one more time of which you can listen to with the `#after()` method.
 
-An real life example
+A real life example
 --------------------
 
 Here's a an example using an Express.js like framework:
