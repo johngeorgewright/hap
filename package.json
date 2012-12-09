@@ -1,6 +1,6 @@
 {
   "name": "hap",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "An extension to the Node.js events.EventEmitter.",
   "main": "index.js",
   "directories": {
@@ -16,7 +16,9 @@
   "keywords": [
     "events",
     "emitter",
-    "EventEmitter"
+    "EventEmitter",
+    "bubble",
+    "bubbling"
   ],
   "author": "John Wright <johngeorge.wright@gmail.com>",
   "license": "BSD",
