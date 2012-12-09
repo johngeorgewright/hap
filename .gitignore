@@ -8,6 +8,7 @@ lib-cov
 *.gz
 *.swp
 
+.c9revisions
 pids
 logs
 node_modules
