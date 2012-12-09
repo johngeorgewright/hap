@@ -24,8 +24,8 @@ describe('EventEmitter', function(){
       expect(this.testObj.children).to.contain(this.child);
     });
 
-    it('should call the child\'s #setParent() method', function(){
-      assert(this.child.setParent.calledWith(this.testObj));
+    it('should set the child\'s #parent property', function(){
+      expect(this.child.parent).to.be(this.testObj);
     });
 
   });
@@ -41,8 +41,8 @@ describe('EventEmitter', function(){
       expect(this.testObj.parent).to.be(this.parent);
     });
 
-    it('should call the parent\'s #addChild() method', function(){
-      assert(this.testObj.parent.addChild.calledWith(this.testObj));
+    it('should append the parent\'s #children property', function(){
+      expect(this.parent.children).to.contain(this.testObj);
     });
 
   });
