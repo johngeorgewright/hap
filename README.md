@@ -186,6 +186,13 @@ module.exports = function(){
 };
 ```
 
+Installation
+-----------
+
+```sh
+npm i hap
+```
+
 API
 ---
 
