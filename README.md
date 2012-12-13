@@ -129,9 +129,15 @@ var express = require('express'),
     http    = require('http'),
     util    = require('util'),
     app     = express(),
-    nav     = require('./nav');
+    nav     = require('./nav'); // See below
 
 util._extend(app, hap.EventEmitter.prototype);
+
+// This event is fired by express when an express instance is used by another
+// express instance.
+app.on('mount', function(parent){
+  this.setParent(parent);
+});
 
 app.use(nav());
 
