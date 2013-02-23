@@ -114,7 +114,21 @@ Here's a quote from [quirksmode](http://www.quirksmode.org/js/events_order.html)
 >   ------------------------------------------
 > ```
 
-hap uses the "W3C model". First there is a capturing phase of which you can attach to with the `#before()` method. There the bubbling takes place of which you can listen to with the `#on()` method. And finally, to add some extra power, the event will bubble from bottom to top one more time of which you can listen to with the `#after()` method.
+### The hap model
+
+*hap* uses the "W3C model". First there is a capturing phase of which you can attach to with the `#before()` method. There the bubbling takes place of which you can listen to with the `#on()` method. And finally, to add some extra power, the event will bubble from bottom to top one more time of which you can listen to with the `#after()` method.
+
+```
+                   | |  / \  / \
+  -----------------| |--| |--|-|------------
+  | parent         | |  | |  | |           |
+  |   -------------| |--| |--|-|------     |
+  |   |child       \ /  | |  | |     |     |
+  |   --------------------------------     |
+  |        hap event model                 |
+  ------------------------------------------
+```
+
 
 A real life example
 --------------------
@@ -139,8 +153,10 @@ app.on('mount', function(parent){
   this.setParent(parent);
 });
 
-app.use(nav());
+// "nav" is a child app
+app.use(nav()); 
 
+// When our app is ready to render the nav, we want to add some items to it.
 app.on('nav', function(e){
   e.val().push({
     content : 'Item 1',
@@ -169,10 +185,13 @@ module.exports = function(){
 
   util._extend(app, hap.EventEmitter.prototype);
 
+  // The nav var needs to be created before (the 
+  // capturng phase) the nav is rendered.
   app.before('nav', function(e){
     e.val([]);
   });
 
+  // Add a listener to the end of event process to render the nav.
   app.after('nav', function(e){
     var ul  = Html.factory('ul'),
         nav = Html.factory('nav');
