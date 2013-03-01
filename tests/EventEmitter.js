@@ -1,4 +1,4 @@
-var expect       = require('expect.js'),
+var expect       = require('chai').expect,
     assert       = require('assert'),
     sinon        = require('sinon'),
     hap          = require('../'),
@@ -20,12 +20,12 @@ describe('EventEmitter', function(){
     });
 
     it('should add to the #children property', function(){
-      expect(this.testObj.children).to.be.an(Array);
+      expect(this.testObj.children).to.be.an('Array');
       expect(this.testObj.children).to.contain(this.child);
     });
 
     it('should set the child\'s #parent property', function(){
-      expect(this.child.parent).to.be(this.testObj);
+      expect(this.child.parent).to.equal(this.testObj);
     });
 
   });
@@ -38,7 +38,7 @@ describe('EventEmitter', function(){
     });
 
     it('should change/set the #parent property', function(){
-      expect(this.testObj.parent).to.be(this.parent);
+      expect(this.testObj.parent).to.equal(this.parent);
     });
 
     it('should append the parent\'s #children property', function(){
@@ -55,8 +55,8 @@ describe('EventEmitter', function(){
     });
 
     it('should attach an event listener', function(){
-      expect(this.testObj._events).not.to.be(undefined);
-      expect(this.testObj._events['test event']).to.be(this.testFn);
+      expect(this.testObj._events).not.to.be.undefined;
+      expect(this.testObj._events['test event']).to.equal(this.testFn);
     });
 
   });
@@ -70,7 +70,7 @@ describe('EventEmitter', function(){
     });
 
     it('should remove an event listener', function(){
-      expect(this.testObj._events['test event']).to.be(undefined);
+      expect(this.testObj._events['test event']).to.be.undefined;
     });
 
   });
@@ -92,8 +92,8 @@ describe('EventEmitter', function(){
     });
 
     it('should attach listeners to an "after" event', function(){
-      expect(this.testObj._events).not.to.be(undefined);
-      expect(this.testObj._events['after test after']).to.be(this.testFn);
+      expect(this.testObj._events).not.to.be.undefined;
+      expect(this.testObj._events['after test after']).to.equal(this.testFn);
     });
 
   });
@@ -106,8 +106,8 @@ describe('EventEmitter', function(){
     });
 
     it('should attach listeners to a "before" event', function(){
-      expect(this.testObj._events).not.to.be(undefined);
-      expect(this.testObj._events['before test before']).to.be(this.testFn);
+      expect(this.testObj._events).not.to.be.undefined;
+      expect(this.testObj._events['before test before']).to.equal(this.testFn);
     });
 
   });
@@ -121,7 +121,7 @@ describe('EventEmitter', function(){
 
     it('should pass an EventFacade', function(done){
       this.testObj.on('test event', function(e){
-        expect(e).to.be.an(EventFacade);
+        expect(e).to.be.instanceOf(EventFacade);
         done();
       });
       this.testObj.fire('test event');
@@ -134,7 +134,7 @@ describe('EventEmitter', function(){
       val = this.testObj.fire('test event', this.facade);
 
       assert(this.facade.val.calledWith());
-      expect(val).to.be('mung');
+      expect(val).to.equal('mung');
     });
 
   });
@@ -186,19 +186,19 @@ describe('EventEmitter', function(){
     it('should call the #capture() method in the children', function(){
       this.testObj.children[0].capture = sinon.spy();
       this.testObj.capture('test event', this.facade);
-      expect(this.testObj.children[0].capture.called).to.be.ok();
+      expect(this.testObj.children[0].capture.called).to.be.ok;
     });
 
     it('should call the child\'s bubble method', function(){
       this.testObj.children[0].bubble = sinon.spy();
       this.testObj.capture('test event', this.facade);
-      expect(this.testObj.children[0].bubble.called).to.be.ok();
+      expect(this.testObj.children[0].bubble.called).to.be.ok;
     });
 
     it('should bubble back up', function(){
       this.testObj.bubble = sinon.spy();
       this.testObj.capture('test event', this.facade);
-      expect(this.testObj.bubble.called).to.be.ok();
+      expect(this.testObj.bubble.called).to.be.ok;
     });
 
   });

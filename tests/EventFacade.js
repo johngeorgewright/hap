@@ -1,4 +1,4 @@
-var expect      = require('expect.js'),
+var expect      = require('chai').expect,
     sinon       = require('sinon'),
     EventFacade = require('../lib/EventFacade');
 
@@ -15,11 +15,11 @@ describe('EventFacade', function(){
     });
 
     it('can set a value', function(){
-      expect(this.facade._val).to.be('mung');
+      expect(this.facade._val).to.equal('mung');
     });
 
     it('can retrieve a value', function(){
-      expect(this.facade.val()).to.be('mung');
+      expect(this.facade.val()).to.equal('mung');
     });
 
   });
