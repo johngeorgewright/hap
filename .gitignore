@@ -9,6 +9,8 @@ lib-cov
 *.swp
 
 .c9revisions
+.exrc
+_exrc
 pids
 logs
 node_modules
