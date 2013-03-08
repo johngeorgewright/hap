@@ -166,11 +166,25 @@ describe('EventEmitter', function(){
 
     beforeEach(function(){
       this.testObj.parent = sinon.stub(new EventEmitter());
+      this.testObj.children = [sinon.stub(new EventEmitter()), sinon.stub(new EventEmitter())];
     });
 
-    it('should call the #bubble() method in the #parent property', function(){
+    it('should call the #bubble() method in all the children', function(){
       this.testObj.bubble('test event', this.facade);
-      assert(this.testObj.parent.bubble.calledWith());
+      this.testObj.children.forEach(function(child){
+        assert(child.bubble.calledOnce);
+      });
+    });
+
+    it('will start bubbling from the children', function(done){
+      var testObj = this.testObj;
+      testObj.on('test event', function(){
+        testObj.children.forEach(function(child){
+          assert(child.bubble.calledOnce);
+        });
+        done();
+      });
+      testObj.bubble('test event', this.facade);
     });
 
   });
@@ -189,16 +203,17 @@ describe('EventEmitter', function(){
       expect(this.testObj.children[0].capture.called).to.be.ok;
     });
 
-    it('should call the child\'s bubble method', function(){
-      this.testObj.children[0].bubble = sinon.spy();
-      this.testObj.capture('test event', this.facade);
-      expect(this.testObj.children[0].bubble.called).to.be.ok;
-    });
-
-    it('should bubble back up', function(){
-      this.testObj.bubble = sinon.spy();
-      this.testObj.capture('test event', this.facade);
-      expect(this.testObj.bubble.called).to.be.ok;
+    it('will call the #capture method in the parent first', function(done){
+      var testObj = this.testObj,
+          called  = false;
+      testObj.children[0].before('test event', function(){
+        expect(called).to.be.ok;
+        done()
+      });
+      testObj.before('test event', function(){
+        called = true;
+      });
+      testObj.capture('test event', this.facade);
     });
 
   });
