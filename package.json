@@ -1,6 +1,6 @@
 {
   "name": "hap",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "An extension to the Node.js events.EventEmitter.",
   "main": "index.js",
   "directories": {
