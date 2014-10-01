@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha -R list tests"
+    "test": "mocha -R list --check-leaks tests"
   },
   "repository": {
     "type": "git",
@@ -24,8 +24,8 @@
   "license": "BSD",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "mocha": "1.7.3",
-    "sinon": "1.5.2",
-    "chai": "~1.5.0"
+    "chai": "^1.9.2",
+    "mocha": "^1.21.4",
+    "sinon": "^1.10.3"
   }
 }
