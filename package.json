@@ -24,8 +24,8 @@
   "license": "BSD",
   "readmeFilename": "README.md",
   "devDependencies": {
-    "chai": "^1.9.2",
-    "mocha": "^1.21.4",
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
     "sinon": "^1.10.3"
   }
 }
