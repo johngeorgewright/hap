@@ -1,0 +1,1 @@
+/// <reference path="globals/hap/hap.d.ts" />
