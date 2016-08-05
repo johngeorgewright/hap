@@ -12,7 +12,7 @@ export class EventEmitter extends BaseEventEmitter{
 	once(eventName:string, fn:Function);
 	onceAfter(eventName:string, fn:Function);
 	onceBefore(eventName:string, fn:Function);
-	removeListener(eventName:string, fn:Function):EventEmitter;
+	removeListener(eventName:string, fn:Function):this;
 	setParent(emitter:EventEmitter);
 }
 export class EventFacade {
