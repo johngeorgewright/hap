@@ -1,4 +1,6 @@
-export class EventEmitter{
+import {EventEmitter as BaseEventEmitter} from "events";
+
+export class EventEmitter extends BaseEventEmitter{
 	addChild(emitter:EventEmitter);
 	after(eventName:string, fn:Function);
 	before(eventName:string, fn:Function)
