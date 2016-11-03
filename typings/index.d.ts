@@ -1,21 +1,19 @@
-import {EventEmitter as BaseEventEmitter} from "events";
-
-export class EventEmitter extends BaseEventEmitter{
-	addChild(emitter:EventEmitter);
-	after(eventName:string, fn:Function);
-	before(eventName:string, fn:Function)
-	protected bubble(eventName:String, e:EventFacade);
-	protected capture(eventName:String, e:EventFacade);
-	emit(eventName:string, ...attrs:Object[]):boolean;
-	fire(eventName:string, ...attrs:(Object|EventFacade)[]):Object;
-	on(eventName:string, fn:Function);
-	once(eventName:string, fn:Function);
-	onceAfter(eventName:string, fn:Function);
-	onceBefore(eventName:string, fn:Function);
-	removeListener(eventName:string, fn:Function):this;
-	setParent(emitter:EventEmitter);
+declare class EventEmitter{
+		addChild(emitter:EventEmitter): EventEmitter;
+		after(eventName:string, fn:Function): EventEmitter;
+		before(eventName:string, fn:Function): EventEmitter;
+		protected bubble(eventName:String, e:EventFacade): EventEmitter;
+		protected capture(eventName:String, e:EventFacade): EventEmitter;
+		emit(eventName:string, ...attrs:Object[]): boolean;
+		fire(eventName:string, ...attrs:(Object|EventFacade)[]): Object;
+		on(eventName:string, fn:Function): EventEmitter;
+		once(eventName:string, fn:Function): EventEmitter;
+		onceAfter(eventName:string, fn:Function): EventEmitter;
+		onceBefore(eventName:string, fn:Function): EventEmitter;
+		removeListener(eventName:string, fn:Function): EventEmitter;
+		setParent(emitter:EventEmitter): EventEmitter;
 }
-export class EventFacade {
+declare class EventFacade {
 	constructor(params?:Object);
-	val(value?:Object):Object; 
-}
+	val(value?:Object): Object;
+} 
