@@ -12,6 +12,7 @@ export declare class EventEmitter{
 	onceBefore(eventName:string, fn:Function): EventEmitter;
 	removeListener(eventName:string, fn:Function): EventEmitter;
 	setParent(emitter:EventEmitter): EventEmitter;
+	listenerCount(event: string): number;
 }
 export declare class EventFacade {
 	constructor(params?:Object);
