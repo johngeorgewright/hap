@@ -1,6 +1,8 @@
 hap
 ===
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/johngeorgewright/hap.svg)](https://greenkeeper.io/)
+
 Introduction
 ------------
 
